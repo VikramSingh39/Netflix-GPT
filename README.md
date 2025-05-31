@@ -2,31 +2,32 @@
 
 Live Link : 
 
-
+ ![](https://github.com/VikramSingh39/Netflix-GPT/blob/main/public/Netflix%20signIn%20page.png)
 #Features
  - Login/Sign Up
-
+ -   
    -Sign In/Sign Up form
 
-   -Redirect to Browse page
-
+   -Redirect to Browsing page
 
 -Browse (After Authentication)
 
-   -Header
+  -Header
 
-   -Main Movie
+  -Main Movie
 
-     -Trailer in background
+   -Trailer in background
 
-     -Title & Description
+   -Title & Description
 
-     -Movie Suggestions
+   -Movie Suggestions
 
-       -Movie Lists
+   -Movie Lists
 
 
 -NetflixGPT
     -Search bar
     -Movie Suggestion
+
+
 
