@@ -2,12 +2,19 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {checkValidData} from './utils/Validate.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from './utils/firebase';
+import {auth} from './utils/Firebase';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, updateProfile } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from './utils/userSlice.js';
+
 
 
 const Login = () => {
     const[isSignIn , setSignIn] = useState(true);   
     const [errMessage, setErrMessage] = useState(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const email = useRef(null);
     const password = useRef(null);
@@ -20,10 +27,9 @@ const Login = () => {
 
     // Validate Email and Password Strength.
     const handleButtonClick= (e)=>{
-      const nameValue = !isSignIn ? name.current?.value : '';
-    const message =  checkValidData(nameValue, email.current.value,
-      password.current.value);
-    setErrMessage(message);
+      // const nameValue = !isSignIn ? name.current?.value : '';
+      const message =  checkValidData(name.current?.value, email.current.value, password.current.value);
+      setErrMessage(message);
     
     if(message)return;
 
@@ -33,6 +39,24 @@ const Login = () => {
       password.current.value)
       .then((userCredential) => {
       const user = userCredential.user;
+      // 
+      const auth = getAuth();
+      updateProfile(user, {
+       displayName: name.current.value
+        }).then(() => {
+        // Profile updated!
+            const{uid, email, displayName} = auth.currentUser;
+             dispatch(addUser(
+                            {uid: uid, 
+                            email: email, 
+                            displayName: displayName}));
+         navigate("/browse");
+       }).catch((error) => {
+        // An error occurred
+        setErrMessage(error.message)
+       });
+      // 
+
       alert('You Sign Up Successfully')
   })
   .catch((error) => {
@@ -46,8 +70,8 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          const user = userCredential.user;
-          console.log('Success');
+          const user = userCredential.user;  
+          navigate("/browse")
           alert('Sign In Success')
         })
         .catch((error) => {
@@ -76,7 +100,7 @@ const Login = () => {
           "Sign In": "Sign Up"}</h2>
 
          {!isSignIn && (
-          <input 
+          <input   
           ref={name} 
           type="text" placeholder='Your Name' className='p-4 my-2 rounded text-white border-[0.5px] 
          border-white w-full'/>
