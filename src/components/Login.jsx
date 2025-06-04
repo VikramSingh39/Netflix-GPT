@@ -3,7 +3,6 @@ import Header from './Header'
 import {checkValidData} from './utils/Validate.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from './utils/Firebase';
-import { useNavigate } from 'react-router-dom';
 import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from './utils/userSlice.js';
@@ -13,9 +12,7 @@ import { addUser, removeUser } from './utils/userSlice.js';
 const Login = () => {
     const[isSignIn , setSignIn] = useState(true);   
     const [errMessage, setErrMessage] = useState(null);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
@@ -50,7 +47,7 @@ const Login = () => {
                             {uid: uid, 
                             email: email, 
                             displayName: displayName}));
-         navigate("/browse");
+        
        }).catch((error) => {
         // An error occurred
         setErrMessage(error.message)
@@ -71,7 +68,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;  
-          navigate("/browse")
           alert('Sign In Success')
         })
         .catch((error) => {
