@@ -3,19 +3,30 @@ import { useDispatch } from 'react-redux';
 import { addNowPlayingMovies } from '../utils/movieSlice';
 import { useEffect } from 'react';
 
-const useNowPlaying = ()=>{
-       const dispatch = useDispatch()
+const useNowPlaying = () => {
+    const dispatch = useDispatch();
 
-    const getNowPlayingMovies = async ()=>{
-        const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', API_options);
+        const getNowPlayingMovies = async () => {
+        try {
+            const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', API_options);
+            const json = await data.json();
+            dispatch(addNowPlayingMovies(json.results));
+        } catch (error) {
+            console.error('Failed to fetch now playing movies:', error);
+        }
+      };
 
-        const json = await data.json();
-        dispatch(addNowPlayingMovies(json.results))
-    };
+    // const getNowPlayingMovies = async ()=>{
+    //     const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', API_options);
 
-    useEffect( ()=>{
-      getNowPlayingMovies();
+    //     const json = await data.json();
+    //     dispatch(addNowPlayingMovies(json.results))
+    // };
+
+    useEffect(() => {
+        getNowPlayingMovies();
     }, []);
+    return null;
 }
 
 export default useNowPlaying;

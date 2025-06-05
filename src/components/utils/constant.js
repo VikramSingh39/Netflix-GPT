@@ -8,6 +8,8 @@ export const API_options = {
   }
 };
 
+export const Img_CDN = "https://image.tmdb.org/t/p/w500/"
+
 // fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', API_options)
 //   .then(res => res.json())
 //   .then(res => console.log(res))
