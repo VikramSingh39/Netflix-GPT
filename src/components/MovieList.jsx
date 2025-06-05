@@ -2,8 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard'
 
 const MovieList = ({title, movies}) => {
- console.log("Here is movies list", movies); 
- console.log(typeof(movies));
+
 
   return (
     <>
