@@ -17,4 +17,4 @@ export const SupportedLanguages = [
   {identifier: "hindi", name: "Hindi"},
 ]
 
-export const openAI_Key = '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'
+// export const openAI_Key = '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'

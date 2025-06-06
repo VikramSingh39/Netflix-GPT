@@ -83,14 +83,17 @@ const Login = () => {
   return (
     <div className='relative'>
         <Header></Header>
+        
 {/* Background Image */}
         <div className='w-full'>
-            <img className='h-screen w-full bg-center' src={backgroundBanner} alt="" />
+            <img className='h-screen w-full object-cover' src={backgroundBanner} alt="" />
         </div>
-
-{/* Sign In Form */}
-<div className=' px-16 py-20  bg-black  flex flex-col w-4/14 mx-auto absolute top-[50%] left-[50%] min-w-[300px] 
+     <marquee className="absolute z-100 top-[12%] bg-blue-300 p-4 md:mx-8 lg:mx-24 rounded-full font-light text-xl" direction="left">
+       Jio Users! Please use VPN after login as TMDB's API is blocked by JIO 😥 </marquee>
+      {/* Sign In Form */}
+       <div className=' px-16 py-20  bg-black opacity-70 flex flex-col  mx-auto absolute top-[60%] left-[50%] w-full md:w-6/12 lg:w-4/12
         translate-x-[-50%] translate-y-[-50%] rounded-2xl'>
+
         <form onSubmit={(e)=>e.preventDefault()} >         
           <h2 className='text-white font-semibold text-4xl mb-3'>{isSignIn? 
           "Sign In": "Sign Up"}</h2>
@@ -98,17 +101,17 @@ const Login = () => {
          {!isSignIn && (
           <input   
           ref={name} 
-          type="text" placeholder='Your Name' className='p-4 my-2 rounded text-white border-[0.5px] 
+          type="text" placeholder='Your Name' className='p-4 my-2 rounded bg-white border-[0.5px] 
          border-white w-full'/>
          )}   
 
           <input
           ref={email}
-           id='email' type="text" placeholder='Email Address' className='p-4  my-2 rounded text-white border-[0.5px] border-white w-full' />
+           id='email' type="text" placeholder='Email Address' className='p-4  my-2 rounded  border-[0.5px]  w-full bg-white' />
          
           <input
           ref={password}
-           id='password' type="password" className='p-4 my-2 rounded text-white border-[0.5px] border-white w-full' placeholder='Enter Password' />
+           id='password' type="password" className='p-4 my-2 rounded bg-white border-[0.5px] border-white w-full' placeholder='Enter Password' />
 
           <p className='text-red-500 rounded p-2 font-light m-1'>{errMessage}</p>
 
