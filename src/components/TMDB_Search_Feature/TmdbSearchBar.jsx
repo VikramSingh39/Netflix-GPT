@@ -2,13 +2,11 @@ import { useRef, useState } from 'react';
 import { lang } from '../utils/langConstant';
 import { useSelector } from 'react-redux';
 import { API_options } from '../utils/constant';
-// import { addTmdbMovieResult } from './utils/tmdbSlice';
 import TmdbMovieSuggestion from './TmdbMovieSuggestion';
 
 const TmdbSearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
-  // const dispatch = useDispatch();
   const [movieSearch, setMovieSearch] = useState([]);
 
 // =============== Search Movie in TMDB Database =====================

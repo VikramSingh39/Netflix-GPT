@@ -6,20 +6,17 @@ function TmdbMovieSuggestion({data}) {;
 
   return (
     <>
-      <div className='px-6 py-3'>
-        <h1 className='text-4xl px-6 py-3  text-white bg-black opacity-85 rounded w-fit'>Hindi Movies</h1>
+      <div className=' py-3'>
+        <h1 className='text-2xl px-4 py-1 mx-auto  text-white bg-black opacity-85 rounded w-fit'>Searched Result</h1>
 
-        <div className='overflow-x-auto bg-black opacity-85 my-4 py-8 rounded'>
-         <div className='w-50 h-50 flex gap-6 '>
+        <div className='mt-6 bg-black w-full p-6'>
+         <div className='flex flex-row flex-wrap  gap-6 '>
               {movieResults?.map((mov, index) => (
               <MovieCard key={index} poster_path={mov?.poster_path} id={mov.id}/>
             ))}
         </div>
         </div>
-
         </div>
-
-
     </>
     
   )
