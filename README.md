@@ -1,6 +1,6 @@
 #Netflix GPT
 
-Live Link : 
+<h1>Live Link : https://netflixgpt-4cad2.web.app</h1>
 
  ![](https://github.com/VikramSingh39/Netflix-GPT/blob/main/public/Netflix%20signIn%20page.png)
 #Features
