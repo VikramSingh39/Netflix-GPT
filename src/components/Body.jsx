@@ -1,5 +1,3 @@
-
-import MovieDetails from './all_movies_seprate_pages/MovieDetails';
 import Browse from './Browse';
 import Login from './Login';
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
@@ -15,10 +13,6 @@ const Body = () => {
       path: "/browse",
       element: <Browse />,
     },
-    {
-      path: "/movie/:id",
-      element: <MovieDetails/>
-    }
   ]);
 
 

@@ -17,14 +17,7 @@ const useNowPlaying = () => {
             console.error('Failed to fetch now playing movies:', error);
         }
       };
-
-    // const getNowPlayingMovies = async ()=>{
-    //     const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', API_options);
-
-    //     const json = await data.json();
-    //     dispatch(addNowPlayingMovies(json.results))
-    // };
-
+      
     useEffect(() => {
         if(!nowPlayingMovies)getNowPlayingMovies();  
     }, []);
