@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {checkValidData} from './utils/Validate.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,signInAnonymously } from "firebase/auth";
 import {auth} from './utils/Firebase';
 import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
@@ -79,7 +79,47 @@ const Login = () => {
 
 }
 
-    // Sign In / SignUp.
+// Login As Guest Function
+const handleGuestLogin = () => {
+  signInAnonymously(auth)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      dispatch(
+        addUser({
+          uid: user.uid,
+          email: "guest@netflixgpt.com",
+          displayName: "Guest User",
+        })
+      );
+
+      // Store login time
+      localStorage.setItem("guestLoginTime", Date.now());
+
+      // Auto-delete after 1 hour
+      setTimeout(() => {
+        if (auth.currentUser && auth.currentUser.isAnonymous) {
+          auth.currentUser.delete()
+            .then(() => {
+              dispatch(removeUser());
+              alert("Guest session expired. User deleted.");
+              window.location.reload(); // or redirect
+            })
+            .catch((error) => {
+              console.error("Failed to delete guest user:", error);
+            });
+        }
+      }, 60 * 60 * 1000); // 1 hour
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setErrMessage(errorCode + " - " + errorMessage);
+    });
+    alert('your Guest Account will be auto delete in 1 Hour')
+};
+
+  // ======================= JSX Start Here =================== 
   return (
     <div className='relative'>
         <Header></Header>
@@ -91,27 +131,31 @@ const Login = () => {
      <marquee className="absolute z-100 top-[12%] bg-blue-300 p-4 md:mx-8 lg:mx-24 rounded-full font-light text-xl" direction="left">
        Jio Users! Please use VPN after login as TMDB's API is blocked by JIO 😥 </marquee>
       {/* Sign In Form */}
-       <div className=' px-16 py-20  bg-black opacity-70 flex flex-col  mx-auto absolute top-[60%] left-[50%] w-full md:w-6/12 lg:w-4/12
+       <div className='md:px-12 px-6 py-20  bg-black opacity-70 flex flex-col md:mx-auto absolute top-[60%] left-[50%] min-w-[80%] md:min-w-[400px] md:w-6/12 lg:w-4/12
         translate-x-[-50%] translate-y-[-50%] rounded-2xl'>
 
-        <form onSubmit={(e)=>e.preventDefault()} >         
+        <form onSubmit={(e)=>e.preventDefault()}  className=''>         
           <h2 className='text-white font-semibold text-4xl mb-3'>{isSignIn? 
           "Sign In": "Sign Up"}</h2>
+
+         {/*================ Login As Guest ==============  */}
+         <button onClick={handleGuestLogin}  className="cursor-pointer p-2 my-2.5 bg-white rounded border-none w-full">
+          Login as Guest</button>
 
          {!isSignIn && (
           <input   
           ref={name} 
-          type="text" placeholder='Your Name' className='p-4 my-2 rounded bg-white border-[0.5px] 
+          type="text" placeholder='Your Name' className='p-3 my-2 rounded bg-white border-[0.5px] 
          border-white w-full'/>
          )}   
 
           <input
           ref={email}
-           id='email' type="text" placeholder='Email Address' className='p-4  my-2 rounded  border-[0.5px]  w-full bg-white' />
+           id='email' type="text" placeholder='Email Address' className='p-3  my-2 rounded  border-[0.5px]  w-full bg-white' />
          
           <input
           ref={password}
-           id='password' type="password" className='p-4 my-2 rounded bg-white border-[0.5px] border-white w-full' placeholder='Enter Password' />
+           id='password' type="password" className='p-3 my-2 rounded bg-white border-[0.5px] border-white w-full' placeholder='Enter Password' />
 
           <p className='text-red-500 rounded p-2 font-light m-1'>{errMessage}</p>
 
