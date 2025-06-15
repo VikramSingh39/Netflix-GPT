@@ -7,6 +7,7 @@ import useUpcomingMovie from './hooks/useUpcomingMovie';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 import TmdbSearch from './TMDB_Search_Feature/TmdbSearch';
+import Footer from './Footer';
 
 const Browse = ()=>{
    useNowPlaying();
@@ -23,6 +24,7 @@ const Browse = ()=>{
         <SecondaryContainer/>
             </>)
         }
+        <Footer/>
        
 
         </>

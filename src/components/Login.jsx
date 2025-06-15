@@ -7,6 +7,7 @@ import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from './utils/userSlice.js';
 import { backgroundBanner } from './utils/constant.js';
+import Footer from './Footer.jsx';
 
 
 const Login = () => {
@@ -173,7 +174,6 @@ const handleGuestLogin = () => {
             {isSignIn? 
           " Sign Up Now": " Sign In Now"}</button> </h3>
 </div>
-
     </div>
   )
 }
