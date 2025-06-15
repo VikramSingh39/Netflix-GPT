@@ -128,7 +128,7 @@ const handleGuestLogin = () => {
         <div className='w-full'>
             <img className='h-screen w-full object-cover' src={backgroundBanner} alt="" />
         </div>
-     <marquee className="absolute z-100 top-[12%] bg-blue-300 p-4 md:mx-8 lg:mx-24 rounded-full font-light text-xl" direction="left">
+     <marquee className="absolute z-100 top-[12%] bg-blue-300 p-2 md:mx-8 lg:mx-24 rounded-full font-light text-xl" direction="left">
        Jio Users! Please use VPN after login as TMDB's API is blocked by JIO 😥 </marquee>
       {/* Sign In Form */}
        <div className='md:px-12 px-6 py-20  bg-black opacity-70 flex flex-col md:mx-auto absolute top-[60%] left-[50%] min-w-[80%] md:min-w-[400px] md:w-6/12 lg:w-4/12
