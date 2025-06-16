@@ -24,7 +24,7 @@ const Browse = ()=>{
         <SecondaryContainer/>
             </>)
         }
-        <Footer/>
+        {/* <Footer/> */}
        
 
         </>

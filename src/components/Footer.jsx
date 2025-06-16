@@ -32,7 +32,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-gray-400 py-10 px-4">
+    <footer className="bg-black text-gray-400 py-10 px-4 w-screen">
       <div className="max-w-6xl mx-auto">
         <p className="mb-8 underline text-sm cursor-pointer">
           Questions? Contact us.
@@ -46,7 +46,7 @@ const Footer = () => {
                   href="#"
                   className="block hover:underline transition duration-200"
                 >
-                  {link}
+                  {link}                      
                 </a>
               ))}
             </div>

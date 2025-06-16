@@ -59,14 +59,14 @@ const Header = ()=>{
     return(
         <>
         <div className='flex absolute justify-between z-50 w-full px-4 py-4 bg-gradient-to-b from-black flex-col md:flex-row whitespace-nowrap'>
-           <img className='w-28 md:w-34 cursor-pointer mx-auto md:mx-0' src={logo}/>
+           <img className='w-28 md:w-34 cursor-pointer mx-auto md:mx-0' src={logo} alt="logo"/>
  
           {user && (<div className='flex flex-wrap justify-between  items-center gap-2'>
           
 
 
             <button className="p-[2px] md:p-2 bg-white rounded cursor-pointer " onClick={handleTmdbSearchClick}> {showTmdbSearch ? "Go to Home": "Search With TMDB"}</button>
-            <img className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded cursor-pointer' src={userProfile} alt="" />
+            <img className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded cursor-pointer' src={userProfile} alt="user" />
             <button className='p-[3px] md:p-2 bg-white rounded cursor-pointer' onClick={handleSignOut}>Sign Out</button>
            </div>)}
           {

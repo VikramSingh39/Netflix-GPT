@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TrailerVideo = () => {
+const TrailerShimmer = () => {
   return (
     <>
     <div className='w-screen aspect-video pt-[15%] px-4 md:px-15  text-white bg-gray-400 '>
@@ -16,4 +16,4 @@ const TrailerVideo = () => {
   )
 }
 
-export default TrailerVideo
+export default TrailerShimmer;
